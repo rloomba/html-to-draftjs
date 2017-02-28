@@ -19,6 +19,8 @@ import getEntityId from './getEntityId';
 
 const SPACE = ' ';
 const REGEX_NBSP = new RegExp('&nbsp;', 'g');
+const REGEX_NEWLINE = new RegExp('\n', 'g');
+const EMPTY = '';
 
 let firstBlock = true;
 
@@ -120,7 +122,7 @@ function genFragment(
 }
 
 function getChunkForHTML(html: string): Object {
-  const sanitizedHtml = html.trim().replace(REGEX_NBSP, SPACE);
+  const sanitizedHtml = html.trim().replace(REGEX_NBSP, SPACE).replace(REGEX_NEWLINE, EMPTY);
   const safeBody = getSafeBodyFromHTML(sanitizedHtml);
   if (!safeBody) {
     return null;
